@@ -37,6 +37,7 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/admin-lte-css-only/css/adminlte.min.css",
               "src/shared/core.less",
+              "src/styles.scss",
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css"
             ],
@@ -144,6 +145,7 @@
               "src/assets/freeze-ui/freeze-ui.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/admin-lte-css-only/css/adminlte.min.css",
+              "src/styles.scss",
               "src/shared/core.less"
             ],
             "scripts": [

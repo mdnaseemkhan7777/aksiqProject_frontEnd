@@ -41,6 +41,11 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
 
 // primeNg
 import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { InputTextModule } from 'primeng/inputtext';
+import { CheckboxModule } from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton';
+
 
 @NgModule({
     declarations: [
@@ -88,7 +93,11 @@ import { ButtonModule } from 'primeng/button';
         NgxPaginationModule,
         // primeNg
         ButtonModule,
+        CardModule,
+        InputTextModule,
+        CheckboxModule,
+        RadioButtonModule,
     ],
     providers: []
 })
-export class AppModule {}
+export class AppModule { }
