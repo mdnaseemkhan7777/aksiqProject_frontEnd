@@ -45,6 +45,9 @@ import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
+import { DividerModule } from 'primeng/divider';
 
 
 @NgModule({
@@ -97,6 +100,9 @@ import { RadioButtonModule } from 'primeng/radiobutton';
         InputTextModule,
         CheckboxModule,
         RadioButtonModule,
+        TableModule,
+        PaginatorModule,
+        DividerModule
     ],
     providers: []
 })
