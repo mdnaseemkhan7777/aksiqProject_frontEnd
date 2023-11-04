@@ -14,14 +14,17 @@ import {
   RoleDto
 } from '@shared/service-proxies/service-proxies';
 import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  templateUrl: './create-user-dialog.component.html'
+  templateUrl: './create-user-dialog.component.html',
+  styleUrls: ['./create-user-dialog.component.scss']
 })
 export class CreateUserDialogComponent extends AppComponentBase
   implements OnInit {
   saving = false;
   user = new CreateUserDto();
+  formValue: any;
   roles: RoleDto[] = [];
   checkedRolesMap: { [key: string]: boolean } = {};
   defaultRoleCheckedStatus = false;
@@ -44,13 +47,26 @@ export class CreateUserDialogComponent extends AppComponentBase
   constructor(
     injector: Injector,
     public _userService: UserServiceProxy,
-    public bsModalRef: BsModalRef
+    public bsModalRef: BsModalRef,
+    private _fb: FormBuilder
   ) {
     super(injector);
   }
 
   ngOnInit(): void {
     this.user.isActive = true;
+
+    this.formValue = this._fb.group({
+      userName: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
+      surname: new FormControl('', Validators.required),
+      emailAddress: new FormControl('', Validators.required),
+      roleNames: new FormControl([]),
+      password: new FormControl('', Validators.required),
+      isActive: new FormControl(true),
+    });
+
+
 
     this._userService.getRoles().subscribe((result) => {
       this.roles = result.items;
@@ -91,6 +107,8 @@ export class CreateUserDialogComponent extends AppComponentBase
 
     this.user.roleNames = this.getCheckedRoles();
 
+    console.log('this.user=>', this.user)
+
     this._userService.create(this.user).subscribe(
       () => {
         this.notify.info(this.l('SavedSuccessfully'));
@@ -101,5 +119,28 @@ export class CreateUserDialogComponent extends AppComponentBase
         this.saving = false;
       }
     );
+  }
+
+  handleCheckboxChange(data) {
+    if (data) {
+      this.formValue.get('roleNames').setValue(['ADMIN'])
+    } else {
+      this.formValue.get('roleNames').setValue([])
+    }
+  }
+
+  onsubmit() {
+    console.log('formValue=>', this.formValue.value)
+    // this.saving = true;
+    // this._userService.create(this.formValue.value).subscribe(
+    //   () => {
+    //     this.notify.info(this.l('SavedSuccessfully'));
+    //     this.bsModalRef.hide();
+    //     this.onSave.emit();
+    //   },
+    //   () => {
+    //     this.saving = false;
+    //   }
+    // );
   }
 }

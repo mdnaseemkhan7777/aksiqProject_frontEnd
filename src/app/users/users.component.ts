@@ -150,11 +150,11 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
       maximizable: true
     });
 
-    // this.ref.onClose.subscribe((product: Product) => {
-    //     if (product) {
-    //         this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: product.name });
-    //     }
-    // });
+    this.ref.onClose.subscribe((x: any) => {
+      console.log('x==>', x)
+    });
+
+   
 
     // this.ref.onMaximize.subscribe((value) => {
     //     this.messageService.add({ severity: 'info', summary: 'Maximized', detail: `maximized: ${value.maximized}` });

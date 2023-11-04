@@ -1,8 +1,9 @@
-<form class="form-horizontal" autocomplete="off" #createUserModal="ngForm" (ngSubmit)="save()">
+<!-- <form class="form-horizontal" autocomplete="off" #createUserModal="ngForm" (ngSubmit)="save()">
   <abp-modal-header [title]="'CreateNewUser' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
   <div class="modal-body">
     <tabset>
       <tab [heading]="'UserDetails' | localize" class="pt-3 px-2">
+
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="name">
             {{ "Name" | localize }}
@@ -13,6 +14,9 @@
             <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary>
           </div>
         </div>
+
+
+
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="surname">
             {{ "Surname" | localize }}
@@ -82,6 +86,9 @@
           </div>
         </div>
       </tab>
+
+
+
       <tab [heading]="'UserRoles' | localize" class="pt-3 px-2">
         <div class="form-group row mb-0">
           <ng-container *ngFor="let role of roles; let i = index">
@@ -99,10 +106,110 @@
       </tab>
     </tabset>
   </div>
-  <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createUserModal.form.valid || saving"
-    (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
-</form>
+  
+  <abp-modal-footer [cancelDisabled]="saving" (onCancelClick)="bsModalRef.hide()" [saveDisabled]="!createUserModal.form.valid || saving"></abp-modal-footer>
+</form> -->
 
 
 
 <!-- primeng STyle -->
+
+
+<div class="card">
+  <form autocomplete="off" [formGroup]="formValue" (ngSubmit)="onsubmit()">
+    <p-tabView>
+      <p-tabPanel header="User Details">
+
+        <div class="row">
+          <div class="col-md-3">
+            <label>Name</label>
+          </div>
+          <div class="col-md-9">
+            <input pInputText id="name" class="inputWidth" required placeholder="Name" aria-describedby="username-help"
+              formControlName="name" />
+            <small *ngIf="!formValue.get('name')?.valid && formValue.get('name')?.touched"
+              class="form-text text-danger "> Name is <strong>required</strong></small>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-3">
+            <label>Surname</label>
+          </div>
+          <div class="col-md-9">
+            <input pInputText id="surname" class="inputWidth" required placeholder="Surname"
+              aria-describedby="surname-help" formControlName="surname" />
+            <small *ngIf="!formValue.get('surname')?.valid && formValue.get('surname')?.touched"
+              class="form-text text-danger "> Surname is <strong>required</strong></small>
+          </div>
+        </div>
+
+
+        <div class="row mt-3">
+          <div class="col-md-3">
+            <label>UserName</label>
+          </div>
+          <div class="col-md-9">
+            <input pInputText id="userName" class="inputWidth" required placeholder="UserName"
+              aria-describedby="userName-help" formControlName="userName" />
+            <small *ngIf="!formValue.get('userName')?.valid && formValue.get('userName')?.touched"
+              class="form-text text-danger "> userName is <strong>required</strong></small>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-3">
+            <label>Password</label>
+          </div>
+          <div class="col-md-9">
+            <input pInputText id="password" class="inputWidth" required placeholder="Password"
+              aria-describedby="password-help" formControlName="password" />
+            <small *ngIf="!formValue.get('password')?.valid && formValue.get('password')?.touched"
+              class="form-text text-danger "> Password is <strong>required</strong></small>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-3">
+            <label>Email Address</label>
+          </div>
+          <div class="col-md-9">
+            <input pInputText id="emailAddress" class="inputWidth" required placeholder="Email Address"
+              aria-describedby="emailAddress-help" formControlName="emailAddress" />
+            <small *ngIf="!formValue.get('emailAddress')?.valid && formValue.get('emailAddress')?.touched"
+              class="form-text text-danger "> Email Address is <strong>required</strong></small>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-3">
+            <label>Is Active</label>
+          </div>
+          <div class="col-md-9">
+            <p-checkbox [binary]="true" class="inputWidth" formControlName="isActive" inputId="binary"></p-checkbox>
+            <small *ngIf="!formValue.get('isActive')?.valid && formValue.get('isActive')?.touched"
+              class="form-text text-danger "> Is Active is <strong>required</strong></small>
+          </div>
+        </div>
+
+      </p-tabPanel>
+      <p-tabPanel header="User Role">
+        <small class="ml-5"></small>
+        <div class="row">
+          <div class="col-md-12 d-flex">
+            <p-checkbox [binary]="true" inputId="binary" (onChange)="handleCheckboxChange($event.checked)"></p-checkbox>
+            <h5 class="ml-5 mt-2">Admin</h5>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+    <div class="row mt-3">
+      <div class="col-md-12">
+        <p-button type="submit" class="float-right ml-3" label="Submit" size="small"
+          [disabled]='formValue.invalid'></p-button>
+        <button pButton pRipple type="button" label="Cancle" 
+          class="p-button-secondary float-right ml-2"></button>
+      </div>
+    </div>
+  </form>
+</div>

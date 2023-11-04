@@ -50,6 +50,8 @@ import { PaginatorModule } from 'primeng/paginator';
 import { DividerModule } from 'primeng/divider';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { DialogModule } from 'primeng/dialog';
+import { TabViewModule } from 'primeng/tabview';
+
 
 
 
@@ -108,6 +110,7 @@ import { DialogModule } from 'primeng/dialog';
         DividerModule,
         DynamicDialogModule,
         DialogModule,
+        TabViewModule
     ],
     providers: [DialogService],
     schemas: [NO_ERRORS_SCHEMA],
