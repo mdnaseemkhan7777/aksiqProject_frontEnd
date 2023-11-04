@@ -221,9 +221,7 @@
                         (click)="clearFilters()"></button>
                 </div>
             </div>
-
             <p-divider></p-divider>
-
             <p-table [value]="users" responsiveLayout="stack" [breakpoint]="'960px'" [rows]="10"
                 [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -262,10 +260,7 @@
             </p-table>
         </p-card>
     </section>
-
 </div>
-<!-- [style]="{width: '40vw'}"  -->
-
 <div>
     <p-confirmDialog header="Delete Confirmation" icon="pi pi-info-circle"></p-confirmDialog>
 </div>

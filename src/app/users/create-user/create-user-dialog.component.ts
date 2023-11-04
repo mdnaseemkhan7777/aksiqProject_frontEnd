@@ -44,7 +44,6 @@ export class CreateUserDialogComponent extends AppComponentBase
   ];
 
   @Output() onSave = new EventEmitter<any>();
-
   constructor(
     injector: Injector,
     public _userService: UserServiceProxy,
@@ -57,7 +56,6 @@ export class CreateUserDialogComponent extends AppComponentBase
 
   ngOnInit(): void {
     this.user.isActive = true;
-
     this.formValue = this._fb.group({
       userName: new FormControl('', Validators.required),
       name: new FormControl('', Validators.required),
@@ -67,9 +65,6 @@ export class CreateUserDialogComponent extends AppComponentBase
       password: new FormControl('', Validators.required),
       isActive: new FormControl(true),
     });
-
-
-
     this._userService.getRoles().subscribe((result) => {
       this.roles = result.items;
       this.setInitialRolesStatus();
@@ -85,8 +80,6 @@ export class CreateUserDialogComponent extends AppComponentBase
   }
 
   isRoleChecked(normalizedName: string): boolean {
-    // just return default role checked status
-    // it's better to use a setting
     return this.defaultRoleCheckedStatus;
   }
 

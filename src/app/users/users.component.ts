@@ -39,7 +39,6 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
     private _modalService: BsModalService,
     public dialogService: DialogService,
     private confirmationService: ConfirmationService,
-
   ) {
     super(injector);
   }
