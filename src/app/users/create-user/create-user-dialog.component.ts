@@ -128,8 +128,6 @@ export class CreateUserDialogComponent extends AppComponentBase
   }
 
   onsubmit() {
-
-    console.log('formValue=>', this.formValue.value)
     this.saving = true;
     this._userService.create(this.formValue.value).subscribe(
       () => {

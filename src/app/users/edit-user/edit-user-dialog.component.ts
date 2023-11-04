@@ -43,9 +43,6 @@ export class EditUserDialogComponent extends AppComponentBase
   }
 
   ngOnInit(): void {
-    console.log('this.id in dite=>', this.id)
-    console.log('this.config.data.id=>', this.config?.data?.id)
-
     if (this.config?.data?.id) {
       this.formValue = this._fb.group({
         id: new FormControl('',),

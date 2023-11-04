@@ -104,16 +104,19 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
   }
 
   private showResetPasswordUserDialog(id?: number): void {
-    this._modalService.show(ResetPasswordDialogComponent, {
-      class: 'modal-lg',
-      initialState: {
-        id: id,
+    this.ref = this.dialogService.open(ResetPasswordDialogComponent, {
+      data: {
+        id: id
       },
+      header: 'Reset Password',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true
     });
   }
 
   private showCreateOrEditUserDialog(id?: number): void {
-    console.log('id=>', id)
     let createOrEditUserDialog: BsModalRef;
     if (!id) {
       createOrEditUserDialog = this._modalService.show(
