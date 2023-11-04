@@ -48,7 +48,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { DividerModule } from 'primeng/divider';
-import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogConfig, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DialogModule } from 'primeng/dialog';
 import { TabViewModule } from 'primeng/tabview';
 
@@ -112,7 +112,7 @@ import { TabViewModule } from 'primeng/tabview';
         DialogModule,
         TabViewModule
     ],
-    providers: [DialogService],
+    providers: [DialogService, DynamicDialogConfig, DynamicDialogRef],
     schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule { }

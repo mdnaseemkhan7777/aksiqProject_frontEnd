@@ -139,8 +139,6 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
     });
   }
 
-
-
   showCreateDialoge() {
     this.ref = this.dialogService.open(CreateUserDialogComponent, {
       header: 'Create new user',
@@ -151,19 +149,23 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
     });
 
     this.ref.onClose.subscribe((x: any) => {
-      console.log('x==>', x)
       this.refresh();
     });
   }
 
-
-
-
-
-
-
-
-
-
-
+  editDialoge(id) {
+    this.ref = this.dialogService.open(EditUserDialogComponent, {
+      data: {
+        id: id
+      },
+      header: 'Edit user',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true
+    });
+    this.ref.onClose.subscribe((x: any) => {
+      this.refresh();
+    });
+  }
 }
