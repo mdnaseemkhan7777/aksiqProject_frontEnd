@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, OnDestroy } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
@@ -14,6 +14,7 @@ import {
 import { CreateUserDialogComponent } from './create-user/create-user-dialog.component';
 import { EditUserDialogComponent } from './edit-user/edit-user-dialog.component';
 import { ResetPasswordDialogComponent } from './reset-password/reset-password.component';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 class PagedUsersRequestDto extends PagedRequestDto {
   keyword: string;
@@ -34,10 +35,14 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,
-    private _modalService: BsModalService
+    private _modalService: BsModalService,
+    public dialogService: DialogService,
+
   ) {
     super(injector);
   }
+
+  ref: DynamicDialogRef | undefined;
 
   createUser(): void {
     this.showCreateOrEditUserDialog();
@@ -108,6 +113,7 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
   }
 
   private showCreateOrEditUserDialog(id?: number): void {
+    console.log('id=>', id)
     let createOrEditUserDialog: BsModalRef;
     if (!id) {
       createOrEditUserDialog = this._modalService.show(
@@ -132,4 +138,37 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
       this.refresh();
     });
   }
+
+
+
+  show() {
+    this.ref = this.dialogService.open(CreateUserDialogComponent, {
+      header: 'Create new user',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true
+    });
+
+    // this.ref.onClose.subscribe((product: Product) => {
+    //     if (product) {
+    //         this.messageService.add({ severity: 'info', summary: 'Product Selected', detail: product.name });
+    //     }
+    // });
+
+    // this.ref.onMaximize.subscribe((value) => {
+    //     this.messageService.add({ severity: 'info', summary: 'Maximized', detail: `maximized: ${value.maximized}` });
+    // });
+  }
+
+
+
+
+
+
+
+
+
+
+
 }

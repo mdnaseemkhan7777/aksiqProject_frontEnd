@@ -1,13 +1,5 @@
-<form
-  class="form-horizontal"
-  autocomplete="off"
-  #createUserModal="ngForm"
-  (ngSubmit)="save()"
->
-  <abp-modal-header
-    [title]="'CreateNewUser' | localize"
-    (onCloseClick)="bsModalRef.hide()"
-  ></abp-modal-header>
+<form class="form-horizontal" autocomplete="off" #createUserModal="ngForm" (ngSubmit)="save()">
+  <abp-modal-header [title]="'CreateNewUser' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
   <div class="modal-body">
     <tabset>
       <tab [heading]="'UserDetails' | localize" class="pt-3 px-2">
@@ -16,21 +8,9 @@
             {{ "Name" | localize }}
           </label>
           <div class="col-md-9">
-            <input
-              type="text"
-              class="form-control"
-              name="name"
-              id="name"
-              required
-              maxlength="32"
-              [(ngModel)]="user.name"
-              #nameModel="ngModel"
-              #nameEl
-            />
-            <abp-validation-summary
-              [control]="nameModel"
-              [controlEl]="nameEl"
-            ></abp-validation-summary>
+            <input type="text" class="form-control" name="name" id="name" required maxlength="32"
+              [(ngModel)]="user.name" #nameModel="ngModel" #nameEl />
+            <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary>
           </div>
         </div>
         <div class="form-group row required">
@@ -38,21 +18,9 @@
             {{ "Surname" | localize }}
           </label>
           <div class="col-md-9">
-            <input
-              type="text"
-              class="form-control"
-              name="surname"
-              id="surname"
-              required
-              maxlength="32"
-              [(ngModel)]="user.surname"
-              #surnameModel="ngModel"
-              #surnameEl
-            />
-            <abp-validation-summary
-              [control]="surnameModel"
-              [controlEl]="surnameEl"
-            ></abp-validation-summary>
+            <input type="text" class="form-control" name="surname" id="surname" required maxlength="32"
+              [(ngModel)]="user.surname" #surnameModel="ngModel" #surnameEl />
+            <abp-validation-summary [control]="surnameModel" [controlEl]="surnameEl"></abp-validation-summary>
           </div>
         </div>
         <div class="form-group row required">
@@ -60,22 +28,9 @@
             {{ "UserName" | localize }}
           </label>
           <div class="col-md-9">
-            <input
-              type="text"
-              class="form-control"
-              name="userName"
-              id="userName"
-              required
-              minlength="2"
-              maxlength="32"
-              [(ngModel)]="user.userName"
-              #userNameModel="ngModel"
-              #userNameEl
-            />
-            <abp-validation-summary
-              [control]="userNameModel"
-              [controlEl]="userNameEl"
-            ></abp-validation-summary>
+            <input type="text" class="form-control" name="userName" id="userName" required minlength="2" maxlength="32"
+              [(ngModel)]="user.userName" #userNameModel="ngModel" #userNameEl />
+            <abp-validation-summary [control]="userNameModel" [controlEl]="userNameEl"></abp-validation-summary>
           </div>
         </div>
         <div class="form-group row required">
@@ -83,25 +38,12 @@
             {{ "Password" | localize }}
           </label>
           <div class="col-md-9">
-            <input
-              type="password"
-              class="form-control"
-              name="password"
-              id="password"
-              required
-              maxlength="32"
-              validateEqual="confirmPassword"
-              reverse="true"
+            <input type="password" class="form-control" name="password" id="password" required maxlength="32"
+              validateEqual="confirmPassword" reverse="true"
               pattern="(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$"
-              [(ngModel)]="user.password"
-              #passwordModel="ngModel"
-              #passwordEl
-            />
-            <abp-validation-summary
-              [control]="passwordModel"
-              [controlEl]="passwordEl"
-              [customValidationErrors]="passwordValidationErrors"
-            ></abp-validation-summary>
+              [(ngModel)]="user.password" #passwordModel="ngModel" #passwordEl />
+            <abp-validation-summary [control]="passwordModel" [controlEl]="passwordEl"
+              [customValidationErrors]="passwordValidationErrors"></abp-validation-summary>
           </div>
         </div>
         <div class="form-group row required">
@@ -109,24 +51,11 @@
             {{ "ConfirmPassword" | localize }}
           </label>
           <div class="col-md-9">
-            <input
-              type="password"
-              class="form-control"
-              name="confirmPassword"
-              id="confirmPassword"
-              required
-              maxlength="32"
-              validateEqual="password"
-              reverse="false"
-              ngModel
-              #confirmPasswordModel="ngModel"
-              #confirmPasswordEl
-            />
-            <abp-validation-summary
-              [control]="confirmPasswordModel"
-              [controlEl]="confirmPasswordEl"
-              [customValidationErrors]="confirmPasswordValidationErrors"
-            ></abp-validation-summary>
+            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" required
+              maxlength="32" validateEqual="password" reverse="false" ngModel #confirmPasswordModel="ngModel"
+              #confirmPasswordEl />
+            <abp-validation-summary [control]="confirmPasswordModel" [controlEl]="confirmPasswordEl"
+              [customValidationErrors]="confirmPasswordValidationErrors"></abp-validation-summary>
           </div>
         </div>
         <div class="form-group row required">
@@ -134,22 +63,10 @@
             {{ "EmailAddress" | localize }}
           </label>
           <div class="col-md-9">
-            <input
-              type="email"
-              class="form-control"
-              name="emailAddress"
-              id="emailAddress"
-              required
-              maxlength="256"
-              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$"
-              [(ngModel)]="user.emailAddress"
-              #emailAddressModel="ngModel"
-              #emailAddressEl
-            />
-            <abp-validation-summary
-              [control]="emailAddressModel"
-              [controlEl]="emailAddressEl"
-            ></abp-validation-summary>
+            <input type="email" class="form-control" name="emailAddress" id="emailAddress" required maxlength="256"
+              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$" [(ngModel)]="user.emailAddress"
+              #emailAddressModel="ngModel" #emailAddressEl />
+            <abp-validation-summary [control]="emailAddressModel" [controlEl]="emailAddressEl"></abp-validation-summary>
           </div>
         </div>
         <div class="form-group row mb-0">
@@ -158,13 +75,8 @@
           </label>
           <div class="col-md-9">
             <div class="custom-control custom-checkbox">
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                name="isActive"
-                id="isActive"
-                [(ngModel)]="user.isActive"
-              />
+              <input type="checkbox" class="custom-control-input" name="isActive" id="isActive"
+                [(ngModel)]="user.isActive" />
               <label class="custom-control-label mt-2" for="isActive"></label>
             </div>
           </div>
@@ -175,13 +87,8 @@
           <ng-container *ngFor="let role of roles; let i = index">
             <div class="col-md-6">
               <div class="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  [id]="'role_' + i"
-                  [checked]="isRoleChecked(role.normalizedName)"
-                  (change)="onRoleChange(role, $event)"
-                />
+                <input type="checkbox" class="custom-control-input" [id]="'role_' + i"
+                  [checked]="isRoleChecked(role.normalizedName)" (change)="onRoleChange(role, $event)" />
                 <label class="custom-control-label" [for]="'role_' + i">
                   {{ role.name }}
                 </label>
@@ -192,9 +99,10 @@
       </tab>
     </tabset>
   </div>
-  <abp-modal-footer
-    [cancelDisabled]="saving"
-    [saveDisabled]="!createUserModal.form.valid || saving"
-    (onCancelClick)="bsModalRef.hide()"
-  ></abp-modal-footer>
+  <abp-modal-footer [cancelDisabled]="saving" [saveDisabled]="!createUserModal.form.valid || saving"
+    (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
 </form>
+
+
+
+<!-- primeng STyle -->

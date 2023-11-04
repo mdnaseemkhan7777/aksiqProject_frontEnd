@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientJsonpModule } from '@angular/common/http';
@@ -48,6 +48,9 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { TableModule } from 'primeng/table';
 import { PaginatorModule } from 'primeng/paginator';
 import { DividerModule } from 'primeng/divider';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogModule } from 'primeng/dialog';
+
 
 
 @NgModule({
@@ -102,8 +105,11 @@ import { DividerModule } from 'primeng/divider';
         RadioButtonModule,
         TableModule,
         PaginatorModule,
-        DividerModule
+        DividerModule,
+        DynamicDialogModule,
+        DialogModule,
     ],
-    providers: []
+    providers: [DialogService],
+    schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule { }
