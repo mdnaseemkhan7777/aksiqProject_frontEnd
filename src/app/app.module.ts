@@ -51,6 +51,8 @@ import { DividerModule } from 'primeng/divider';
 import { DialogService, DynamicDialogConfig, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DialogModule } from 'primeng/dialog';
 import { TabViewModule } from 'primeng/tabview';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 
 
@@ -110,9 +112,10 @@ import { TabViewModule } from 'primeng/tabview';
         DividerModule,
         DynamicDialogModule,
         DialogModule,
-        TabViewModule
+        TabViewModule,
+        ConfirmDialogModule
     ],
-    providers: [DialogService, DynamicDialogConfig, DynamicDialogRef],
+    providers: [DialogService, DynamicDialogConfig, DynamicDialogRef, ConfirmationService],
     schemas: [NO_ERRORS_SCHEMA],
 })
 export class AppModule { }

@@ -15,6 +15,7 @@ import { CreateUserDialogComponent } from './create-user/create-user-dialog.comp
 import { EditUserDialogComponent } from './edit-user/edit-user-dialog.component';
 import { ResetPasswordDialogComponent } from './reset-password/reset-password.component';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ConfirmationService } from 'primeng/api';
 
 class PagedUsersRequestDto extends PagedRequestDto {
   keyword: string;
@@ -37,6 +38,7 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
     private _userService: UserServiceProxy,
     private _modalService: BsModalService,
     public dialogService: DialogService,
+    private confirmationService: ConfirmationService,
 
   ) {
     super(injector);
@@ -89,18 +91,19 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
   }
 
   protected delete(user: UserDto): void {
-    abp.message.confirm(
-      this.l('UserDeleteWarningMessage', user.fullName),
-      undefined,
-      (result: boolean) => {
-        if (result) {
-          this._userService.delete(user.id).subscribe(() => {
-            abp.notify.success(this.l('SuccessfullyDeleted'));
-            this.refresh();
-          });
-        }
-      }
-    );
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this._userService.delete(user.id).subscribe(() => {
+          abp.notify.success(this.l('SuccessfullyDeleted'));
+          this.refresh();
+        });
+      },
+      reject: (type) => {
+      },
+    })
   }
 
   private showResetPasswordUserDialog(id?: number): void {

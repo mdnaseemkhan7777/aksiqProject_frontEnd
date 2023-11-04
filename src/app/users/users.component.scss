@@ -14,3 +14,26 @@
     margin-left: 3px;
     margin-right: 3px;
 }
+
+:host ::ng-deep .p-dialog {
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+    max-height: 90%;
+    width: 41%;
+    transform: scale(1);
+    position: relative;
+}
+
+
+@media only screen and (max-width: 600px) {
+    :host ::ng-deep .p-dialog {
+        display: flex;
+        flex-direction: column;
+        pointer-events: auto;
+        max-height: 90%;
+        width: 90%;
+        transform: scale(1);
+        position: relative;
+    }
+}
