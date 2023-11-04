@@ -205,10 +205,10 @@
     </p-tabView>
     <div class="row mt-3">
       <div class="col-md-12">
-        <p-button type="submit" class="float-right ml-3" label="Submit" size="small"
-          [disabled]='formValue.invalid'></p-button>
-        <button pButton pRipple type="button" label="Cancle" 
-          class="p-button-secondary float-right ml-2"></button>
+        <button pButton pRipple type="submit" label="Save" class="p-button-primary mr-3 mb-3 float-right buttonHeight"
+          [disabled]='formValue.invalid'></button>
+        <button pButton pRipple type="button" label="Cancle" (click)="ref.close()"
+          class="p-button-secondary float-right mr-2 mb-3 buttonHeight"></button>
       </div>
     </div>
   </form>

@@ -15,6 +15,7 @@ import {
 } from '@shared/service-proxies/service-proxies';
 import { AbpValidationError } from '@shared/components/validation/abp-validation.api';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   templateUrl: './create-user-dialog.component.html',
@@ -48,7 +49,8 @@ export class CreateUserDialogComponent extends AppComponentBase
     injector: Injector,
     public _userService: UserServiceProxy,
     public bsModalRef: BsModalRef,
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    public ref: DynamicDialogRef
   ) {
     super(injector);
   }
@@ -104,11 +106,7 @@ export class CreateUserDialogComponent extends AppComponentBase
 
   save(): void {
     this.saving = true;
-
     this.user.roleNames = this.getCheckedRoles();
-
-    console.log('this.user=>', this.user)
-
     this._userService.create(this.user).subscribe(
       () => {
         this.notify.info(this.l('SavedSuccessfully'));
@@ -130,17 +128,19 @@ export class CreateUserDialogComponent extends AppComponentBase
   }
 
   onsubmit() {
+
     console.log('formValue=>', this.formValue.value)
-    // this.saving = true;
-    // this._userService.create(this.formValue.value).subscribe(
-    //   () => {
-    //     this.notify.info(this.l('SavedSuccessfully'));
-    //     this.bsModalRef.hide();
-    //     this.onSave.emit();
-    //   },
-    //   () => {
-    //     this.saving = false;
-    //   }
-    // );
+    this.saving = true;
+    this._userService.create(this.formValue.value).subscribe(
+      () => {
+        this.notify.info(this.l('SavedSuccessfully'));
+        this.bsModalRef.hide();
+        this.ref.close();
+        this.onSave.emit();
+      },
+      () => {
+        this.saving = false;
+      }
+    );
   }
 }

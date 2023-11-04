@@ -141,7 +141,7 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
 
 
 
-  show() {
+  showCreateDialoge() {
     this.ref = this.dialogService.open(CreateUserDialogComponent, {
       header: 'Create new user',
       width: '70%',
@@ -152,13 +152,8 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
 
     this.ref.onClose.subscribe((x: any) => {
       console.log('x==>', x)
+      this.refresh();
     });
-
-   
-
-    // this.ref.onMaximize.subscribe((value) => {
-    //     this.messageService.add({ severity: 'info', summary: 'Maximized', detail: `maximized: ${value.maximized}` });
-    // });
   }
 
 
