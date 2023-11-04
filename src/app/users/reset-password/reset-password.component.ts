@@ -5,6 +5,7 @@ import {
   ResetPasswordDto
 } from '@shared/service-proxies/service-proxies';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-reset-password',
@@ -19,7 +20,9 @@ export class ResetPasswordDialogComponent extends AppComponentBase
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,
-    public bsModalRef: BsModalRef
+    public bsModalRef: BsModalRef,
+    public config: DynamicDialogConfig,
+    public ref: DynamicDialogRef
   ) {
     super(injector);
   }
@@ -27,7 +30,7 @@ export class ResetPasswordDialogComponent extends AppComponentBase
   ngOnInit() {
     this.isLoading = true;
     this.resetPasswordDto = new ResetPasswordDto();
-    this.resetPasswordDto.userId = this.id;
+    this.resetPasswordDto.userId = this.config?.data?.id;
     this.resetPasswordDto.newPassword = Math.random()
       .toString(36)
       .substr(2, 10);

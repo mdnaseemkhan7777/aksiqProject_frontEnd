@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientJsonpModule } from '@angular/common/http';
@@ -41,6 +41,21 @@ import { SidebarMenuComponent } from './layout/sidebar-menu.component';
 
 // primeNg
 import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { InputTextModule } from 'primeng/inputtext';
+import { CheckboxModule } from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
+import { DividerModule } from 'primeng/divider';
+import { DialogService, DynamicDialogConfig, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogModule } from 'primeng/dialog';
+import { TabViewModule } from 'primeng/tabview';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+
+
+
 
 @NgModule({
     declarations: [
@@ -88,7 +103,19 @@ import { ButtonModule } from 'primeng/button';
         NgxPaginationModule,
         // primeNg
         ButtonModule,
+        CardModule,
+        InputTextModule,
+        CheckboxModule,
+        RadioButtonModule,
+        TableModule,
+        PaginatorModule,
+        DividerModule,
+        DynamicDialogModule,
+        DialogModule,
+        TabViewModule,
+        ConfirmDialogModule
     ],
-    providers: []
+    providers: [DialogService, DynamicDialogConfig, DynamicDialogRef, ConfirmationService],
+    schemas: [NO_ERRORS_SCHEMA],
 })
-export class AppModule {}
+export class AppModule { }

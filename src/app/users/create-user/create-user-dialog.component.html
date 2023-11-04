@@ -1,58 +1,30 @@
-<form
-  class="form-horizontal"
-  autocomplete="off"
-  #createUserModal="ngForm"
-  (ngSubmit)="save()"
->
-  <abp-modal-header
-    [title]="'CreateNewUser' | localize"
-    (onCloseClick)="bsModalRef.hide()"
-  ></abp-modal-header>
+<!-- <form class="form-horizontal" autocomplete="off" #createUserModal="ngForm" (ngSubmit)="save()">
+  <abp-modal-header [title]="'CreateNewUser' | localize" (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
   <div class="modal-body">
     <tabset>
       <tab [heading]="'UserDetails' | localize" class="pt-3 px-2">
+
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="name">
             {{ "Name" | localize }}
           </label>
           <div class="col-md-9">
-            <input
-              type="text"
-              class="form-control"
-              name="name"
-              id="name"
-              required
-              maxlength="32"
-              [(ngModel)]="user.name"
-              #nameModel="ngModel"
-              #nameEl
-            />
-            <abp-validation-summary
-              [control]="nameModel"
-              [controlEl]="nameEl"
-            ></abp-validation-summary>
+            <input type="text" class="form-control" name="name" id="name" required maxlength="32"
+              [(ngModel)]="user.name" #nameModel="ngModel" #nameEl />
+            <abp-validation-summary [control]="nameModel" [controlEl]="nameEl"></abp-validation-summary>
           </div>
         </div>
+
+
+
         <div class="form-group row required">
           <label class="col-md-3 col-form-label" for="surname">
             {{ "Surname" | localize }}
           </label>
           <div class="col-md-9">
-            <input
-              type="text"
-              class="form-control"
-              name="surname"
-              id="surname"
-              required
-              maxlength="32"
-              [(ngModel)]="user.surname"
-              #surnameModel="ngModel"
-              #surnameEl
-            />
-            <abp-validation-summary
-              [control]="surnameModel"
-              [controlEl]="surnameEl"
-            ></abp-validation-summary>
+            <input type="text" class="form-control" name="surname" id="surname" required maxlength="32"
+              [(ngModel)]="user.surname" #surnameModel="ngModel" #surnameEl />
+            <abp-validation-summary [control]="surnameModel" [controlEl]="surnameEl"></abp-validation-summary>
           </div>
         </div>
         <div class="form-group row required">
@@ -60,22 +32,9 @@
             {{ "UserName" | localize }}
           </label>
           <div class="col-md-9">
-            <input
-              type="text"
-              class="form-control"
-              name="userName"
-              id="userName"
-              required
-              minlength="2"
-              maxlength="32"
-              [(ngModel)]="user.userName"
-              #userNameModel="ngModel"
-              #userNameEl
-            />
-            <abp-validation-summary
-              [control]="userNameModel"
-              [controlEl]="userNameEl"
-            ></abp-validation-summary>
+            <input type="text" class="form-control" name="userName" id="userName" required minlength="2" maxlength="32"
+              [(ngModel)]="user.userName" #userNameModel="ngModel" #userNameEl />
+            <abp-validation-summary [control]="userNameModel" [controlEl]="userNameEl"></abp-validation-summary>
           </div>
         </div>
         <div class="form-group row required">
@@ -83,25 +42,12 @@
             {{ "Password" | localize }}
           </label>
           <div class="col-md-9">
-            <input
-              type="password"
-              class="form-control"
-              name="password"
-              id="password"
-              required
-              maxlength="32"
-              validateEqual="confirmPassword"
-              reverse="true"
+            <input type="password" class="form-control" name="password" id="password" required maxlength="32"
+              validateEqual="confirmPassword" reverse="true"
               pattern="(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$"
-              [(ngModel)]="user.password"
-              #passwordModel="ngModel"
-              #passwordEl
-            />
-            <abp-validation-summary
-              [control]="passwordModel"
-              [controlEl]="passwordEl"
-              [customValidationErrors]="passwordValidationErrors"
-            ></abp-validation-summary>
+              [(ngModel)]="user.password" #passwordModel="ngModel" #passwordEl />
+            <abp-validation-summary [control]="passwordModel" [controlEl]="passwordEl"
+              [customValidationErrors]="passwordValidationErrors"></abp-validation-summary>
           </div>
         </div>
         <div class="form-group row required">
@@ -109,24 +55,11 @@
             {{ "ConfirmPassword" | localize }}
           </label>
           <div class="col-md-9">
-            <input
-              type="password"
-              class="form-control"
-              name="confirmPassword"
-              id="confirmPassword"
-              required
-              maxlength="32"
-              validateEqual="password"
-              reverse="false"
-              ngModel
-              #confirmPasswordModel="ngModel"
-              #confirmPasswordEl
-            />
-            <abp-validation-summary
-              [control]="confirmPasswordModel"
-              [controlEl]="confirmPasswordEl"
-              [customValidationErrors]="confirmPasswordValidationErrors"
-            ></abp-validation-summary>
+            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" required
+              maxlength="32" validateEqual="password" reverse="false" ngModel #confirmPasswordModel="ngModel"
+              #confirmPasswordEl />
+            <abp-validation-summary [control]="confirmPasswordModel" [controlEl]="confirmPasswordEl"
+              [customValidationErrors]="confirmPasswordValidationErrors"></abp-validation-summary>
           </div>
         </div>
         <div class="form-group row required">
@@ -134,22 +67,10 @@
             {{ "EmailAddress" | localize }}
           </label>
           <div class="col-md-9">
-            <input
-              type="email"
-              class="form-control"
-              name="emailAddress"
-              id="emailAddress"
-              required
-              maxlength="256"
-              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$"
-              [(ngModel)]="user.emailAddress"
-              #emailAddressModel="ngModel"
-              #emailAddressEl
-            />
-            <abp-validation-summary
-              [control]="emailAddressModel"
-              [controlEl]="emailAddressEl"
-            ></abp-validation-summary>
+            <input type="email" class="form-control" name="emailAddress" id="emailAddress" required maxlength="256"
+              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,})+$" [(ngModel)]="user.emailAddress"
+              #emailAddressModel="ngModel" #emailAddressEl />
+            <abp-validation-summary [control]="emailAddressModel" [controlEl]="emailAddressEl"></abp-validation-summary>
           </div>
         </div>
         <div class="form-group row mb-0">
@@ -158,30 +79,23 @@
           </label>
           <div class="col-md-9">
             <div class="custom-control custom-checkbox">
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                name="isActive"
-                id="isActive"
-                [(ngModel)]="user.isActive"
-              />
+              <input type="checkbox" class="custom-control-input" name="isActive" id="isActive"
+                [(ngModel)]="user.isActive" />
               <label class="custom-control-label mt-2" for="isActive"></label>
             </div>
           </div>
         </div>
       </tab>
+
+
+
       <tab [heading]="'UserRoles' | localize" class="pt-3 px-2">
         <div class="form-group row mb-0">
           <ng-container *ngFor="let role of roles; let i = index">
             <div class="col-md-6">
               <div class="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  [id]="'role_' + i"
-                  [checked]="isRoleChecked(role.normalizedName)"
-                  (change)="onRoleChange(role, $event)"
-                />
+                <input type="checkbox" class="custom-control-input" [id]="'role_' + i"
+                  [checked]="isRoleChecked(role.normalizedName)" (change)="onRoleChange(role, $event)" />
                 <label class="custom-control-label" [for]="'role_' + i">
                   {{ role.name }}
                 </label>
@@ -192,9 +106,110 @@
       </tab>
     </tabset>
   </div>
-  <abp-modal-footer
-    [cancelDisabled]="saving"
-    [saveDisabled]="!createUserModal.form.valid || saving"
-    (onCancelClick)="bsModalRef.hide()"
-  ></abp-modal-footer>
-</form>
+  
+  <abp-modal-footer [cancelDisabled]="saving" (onCancelClick)="bsModalRef.hide()" [saveDisabled]="!createUserModal.form.valid || saving"></abp-modal-footer>
+</form> -->
+
+
+
+<!-- primeng STyle -->
+
+
+<div class="card">
+  <form autocomplete="off" [formGroup]="formValue" (ngSubmit)="onsubmit()">
+    <p-tabView>
+      <p-tabPanel header="User Details">
+
+        <div class="row">
+          <div class="col-md-3">
+            <label>Name</label>
+          </div>
+          <div class="col-md-9">
+            <input pInputText id="name" class="inputWidth" required placeholder="Name" aria-describedby="username-help"
+              formControlName="name" />
+            <small *ngIf="!formValue.get('name')?.valid && formValue.get('name')?.touched"
+              class="form-text text-danger "> Name is <strong>required</strong></small>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-3">
+            <label>Surname</label>
+          </div>
+          <div class="col-md-9">
+            <input pInputText id="surname" class="inputWidth" required placeholder="Surname"
+              aria-describedby="surname-help" formControlName="surname" />
+            <small *ngIf="!formValue.get('surname')?.valid && formValue.get('surname')?.touched"
+              class="form-text text-danger "> Surname is <strong>required</strong></small>
+          </div>
+        </div>
+
+
+        <div class="row mt-3">
+          <div class="col-md-3">
+            <label>UserName</label>
+          </div>
+          <div class="col-md-9">
+            <input pInputText id="userName" class="inputWidth" required placeholder="UserName"
+              aria-describedby="userName-help" formControlName="userName" />
+            <small *ngIf="!formValue.get('userName')?.valid && formValue.get('userName')?.touched"
+              class="form-text text-danger "> userName is <strong>required</strong></small>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-3">
+            <label>Password</label>
+          </div>
+          <div class="col-md-9">
+            <input pInputText id="password" class="inputWidth" required placeholder="Password"
+              aria-describedby="password-help" formControlName="password" />
+            <small *ngIf="!formValue.get('password')?.valid && formValue.get('password')?.touched"
+              class="form-text text-danger "> Password is <strong>required</strong></small>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-3">
+            <label>Email Address</label>
+          </div>
+          <div class="col-md-9">
+            <input pInputText id="emailAddress" class="inputWidth" required placeholder="Email Address"
+              aria-describedby="emailAddress-help" formControlName="emailAddress" />
+            <small *ngIf="!formValue.get('emailAddress')?.valid && formValue.get('emailAddress')?.touched"
+              class="form-text text-danger "> Email Address is <strong>required</strong></small>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-3">
+            <label>Is Active</label>
+          </div>
+          <div class="col-md-9">
+            <p-checkbox [binary]="true" class="inputWidth" formControlName="isActive" inputId="binary"></p-checkbox>
+            <small *ngIf="!formValue.get('isActive')?.valid && formValue.get('isActive')?.touched"
+              class="form-text text-danger "> Is Active is <strong>required</strong></small>
+          </div>
+        </div>
+
+      </p-tabPanel>
+      <p-tabPanel header="User Role">
+        <small class="ml-5"></small>
+        <div class="row">
+          <div class="col-md-12 d-flex">
+            <p-checkbox [binary]="true" inputId="binary" (onChange)="handleCheckboxChange($event.checked)"></p-checkbox>
+            <h5 class="ml-5 mt-2">Admin</h5>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+    <div class="row mt-3">
+      <div class="col-md-12">
+        <button pButton pRipple type="submit" label="Save" class="p-button-primary mr-3 mb-3 float-right buttonHeight"
+          [disabled]='formValue.invalid'></button>
+        <button pButton pRipple type="button" label="Cancle" (click)="ref.close()"
+          class="p-button-secondary float-right mr-2 mb-3 buttonHeight"></button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -6,15 +6,14 @@
                     <h1>{{ "Users" | localize }}</h1>
                 </div>
                 <div class="col-6 text-right">
-                    <a href="javascript:;" class="btn bg-blue" (click)="createUser()">
-                        <i class="fa fa-plus-square"></i>
-                        {{ "Create" | localize }}
-                    </a>
+                    <p-button label="Create" icon="pi pi-plus" size="small" (click)="showCreateDialoge()"></p-button>
                 </div>
             </div>
         </div>
     </section>
-    <section class="content px-2">
+
+    <!-- old code -->
+    <!-- <section class="content px-2">
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
@@ -23,33 +22,18 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <button
-                                            type="button"
-                                            class="btn bg-blue"
-                                            (click)="getDataPage(1)"
-                                    >
+                                    <button type="button" class="btn bg-blue" (click)="getDataPage(1)">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
-                                <input
-                                        type="text"
-                                        class="form-control"
-                                        name="keyword"
-                                        [placeholder]="'SearchWithThreeDot' | localize"
-                                        [(ngModel)]="keyword"
-                                        (keyup.enter)="getDataPage(1)"
-                                />
+                                <input type="text" class="form-control" name="keyword"
+                                    [placeholder]="'SearchWithThreeDot' | localize" [(ngModel)]="keyword"
+                                    (keyup.enter)="getDataPage(1)" />
                                 <div class="input-group-append">
-                                    <button
-                                            type="button"
-                                            class="btn btn-default"
-                                            (click)="advancedFiltersVisible = !advancedFiltersVisible"
-                                    >
-                                        <i
-                                                class="fas"
-                                                [class.fa-angle-up]="advancedFiltersVisible"
-                                                [class.fa-angle-down]="!advancedFiltersVisible"
-                                        ></i>
+                                    <button type="button" class="btn btn-default"
+                                        (click)="advancedFiltersVisible = !advancedFiltersVisible">
+                                        <i class="fas" [class.fa-angle-up]="advancedFiltersVisible"
+                                            [class.fa-angle-down]="!advancedFiltersVisible"></i>
                                     </button>
                                 </div>
                             </div>
@@ -66,48 +50,25 @@
                                             </label>
                                             <div class="col-md-9 pt-2">
                                                 <div class="custom-control custom-radio d-inline">
-                                                    <input
-                                                            type="radio"
-                                                            class="custom-control-input"
-                                                            id="isActiveAll"
-                                                            name="isActive"
-                                                            [(ngModel)]="isActive"
-                                                            [value]="undefined"
-                                                            checked
-                                                    />
+                                                    <input type="radio" class="custom-control-input" id="isActiveAll"
+                                                        name="isActive" [(ngModel)]="isActive" [value]="undefined"
+                                                        checked />
                                                     <label class="custom-control-label" for="isActiveAll">
                                                         {{ "All" | localize }}
                                                     </label>
                                                 </div>
                                                 <div class="custom-control custom-radio d-inline mx-3">
-                                                    <input
-                                                            type="radio"
-                                                            class="custom-control-input"
-                                                            id="isActiveActive"
-                                                            name="isActive"
-                                                            [(ngModel)]="isActive"
-                                                            [value]="true"
-                                                    />
-                                                    <label
-                                                            class="custom-control-label"
-                                                            for="isActiveActive"
-                                                    >
+                                                    <input type="radio" class="custom-control-input" id="isActiveActive"
+                                                        name="isActive" [(ngModel)]="isActive" [value]="true" />
+                                                    <label class="custom-control-label" for="isActiveActive">
                                                         {{ "Yes" | localize }}
                                                     </label>
                                                 </div>
                                                 <div class="custom-control custom-radio d-inline">
-                                                    <input
-                                                            type="radio"
-                                                            class="custom-control-input"
-                                                            id="isActivePassive"
-                                                            name="isActive"
-                                                            [(ngModel)]="isActive"
-                                                            [value]="false"
-                                                    />
-                                                    <label
-                                                            class="custom-control-label"
-                                                            for="isActivePassive"
-                                                    >
+                                                    <input type="radio" class="custom-control-input"
+                                                        id="isActivePassive" name="isActive" [(ngModel)]="isActive"
+                                                        [value]="false" />
+                                                    <label class="custom-control-label" for="isActivePassive">
                                                         {{ "No" | localize }}
                                                     </label>
                                                 </div>
@@ -118,19 +79,10 @@
                             </form>
                         </div>
                         <div class="card-footer">
-                            <button
-                                    type="button"
-                                    class="btn bg-blue"
-                                    (click)="getDataPage(1)"
-                            >
+                            <button type="button" class="btn bg-blue" (click)="getDataPage(1)">
                                 {{ "Search" | localize }}
                             </button>
-                            <p-button label="Submit" size="small"></p-button>
-                            <button
-                                    type="button"
-                                    class="btn btn-default float-right"
-                                    (click)="clearFilters()"
-                            >
+                            <button type="button" class="btn btn-default float-right" (click)="clearFilters()">
                                 {{ "Clear" | localize }}
                             </button>
                         </div>
@@ -140,17 +92,16 @@
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered" [busy]="isTableLoading">
                             <thead class="bg-light">
-                            <tr>
-                                <th>{{ "UserName" | localize }}</th>
-                                <th>{{ "FullName" | localize }}</th>
-                                <th>{{ "EmailAddress" | localize }}</th>
-                                <th>{{ "IsActive" | localize }}</th>
-                                <th style="width: 310px;">{{ "Actions" | localize }}</th>
-                            </tr>
+                                <tr>
+                                    <th>{{ "UserName" | localize }}</th>
+                                    <th>{{ "FullName" | localize }}</th>
+                                    <th>{{ "EmailAddress" | localize }}</th>
+                                    <th>{{ "IsActive" | localize }}</th>
+                                    <th style="width: 310px;">{{ "Actions" | localize }}</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr
-                                    *ngFor="
+                                <tr *ngFor="
                   let user of users
                     | paginate
                       : {
@@ -159,49 +110,33 @@
                           currentPage: pageNumber,
                           totalItems: totalItems
                         }
-                "
-                            >
-                                <td>{{ user.userName }}</td>
-                                <td>{{ user.fullName }}</td>
-                                <td>{{ user.emailAddress }}</td>
-                                <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input
-                                                type="checkbox"
-                                                class="custom-control-input"
-                                                disabled
-                                                [checked]="user.isActive"
-                                        />
-                                        <label class="custom-control-label"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button
-                                            type="button"
-                                            class="btn btn-sm bg-secondary"
-                                            (click)="editUser(user)"
-                                    >
-                                        <i class="fas fa-pencil-alt"></i>
-                                        {{ "Edit" | localize }}
-                                    </button>
-                                    <button
-                                            type="button"
-                                            class="btn btn-sm bg-danger mx-2"
-                                            (click)="delete(user)"
-                                    >
-                                        <i class="fas fa-trash"></i>
-                                        {{ "Delete" | localize }}
-                                    </button>
-                                    <button
-                                            type="button"
-                                            class="btn btn-sm bg-secondary"
-                                            (click)="resetPassword(user)"
-                                    >
-                                        <i class="fas fa-lock"></i>
-                                        {{ "ResetPassword" | localize }}
-                                    </button>
-                                </td>
-                            </tr>
+                ">
+                                    <td>{{ user.userName }}</td>
+                                    <td>{{ user.fullName }}</td>
+                                    <td>{{ user.emailAddress }}</td>
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" disabled
+                                                [checked]="user.isActive" />
+                                            <label class="custom-control-label"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm bg-secondary" (click)="editUser(user)">
+                                            <i class="fas fa-pencil-alt"></i>
+                                            {{ "Edit" | localize }}
+                                        </button>
+                                        <button type="button" class="btn btn-sm bg-danger mx-2" (click)="delete(user)">
+                                            <i class="fas fa-trash"></i>
+                                            {{ "Delete" | localize }}
+                                        </button>
+                                        <button type="button" class="btn btn-sm bg-secondary"
+                                            (click)="resetPassword(user)">
+                                            <i class="fas fa-lock"></i>
+                                            {{ "ResetPassword" | localize }}
+                                        </button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -220,10 +155,7 @@
                         </div>
                         <div class="col-sm-4 col-12">
                             <div class="float-sm-right m-auto">
-                                <abp-pagination-controls
-                                        id="server"
-                                        (pageChange)="getDataPage($event)"
-                                >
+                                <abp-pagination-controls id="server" (pageChange)="getDataPage($event)">
                                 </abp-pagination-controls>
                             </div>
                         </div>
@@ -231,5 +163,109 @@
                 </div>
             </div>
         </div>
+    </section> -->
+
+    <!-- primeNg -->
+
+    <section class="content px-3">
+        <p-card>
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6">
+                    <div class="p-inputgroup" style="width: 100% !important;">
+                        <button type="button" (click)="getDataPage(1)" pButton icon="pi pi-search"
+                            styleClass="p-button-success"></button>
+                        <input type="text" class="manageHeight" pInputText placeholder="Search..." />
+                        <button class="p-inputgroup-addon manageHeight"
+                            (click)="advancedFiltersVisible = !advancedFiltersVisible">
+                            <i class="pi pi-angle-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="advancedFiltersVisible" class="card mb-0 mt-1">
+                <div class="card-body">
+                    <form class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row mb-0">
+                                    <label class="col-md-3 col-form-label">
+                                        {{ "IsActive" | localize }}
+                                    </label>
+                                    <div class="col-md-9 pt-2">
+                                        <div class=" d-inline">
+                                            <p-radioButton name="isActive" value="undefined" class="mb-2"
+                                                [(ngModel)]="isActive" inputId="isActiveAll"></p-radioButton>
+                                            <label for="isActiveAll" class="ml-2">All</label>
+                                        </div>
+                                        <div class=" d-inline mx-3">
+                                            <p-radioButton name="isActive" value="true" class="mb-2"
+                                                [(ngModel)]="isActive" inputId="isActiveActive"></p-radioButton>
+                                            <label for="isActiveActive" class="ml-2">Yes</label>
+
+                                        </div>
+                                        <div class="d-inline">
+                                            <p-radioButton name="isActive" value="false" class="mb-2"
+                                                [(ngModel)]="isActive" inputId="isActivePassive"></p-radioButton>
+                                            <label for="isActivePassive" class="ml-2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <p-button label="Search" size="small" (click)="getDataPage(1)"></p-button>
+                    <button pButton pRipple label="Clear" class="p-button-secondary float-right"
+                        (click)="clearFilters()"></button>
+                </div>
+            </div>
+
+            <p-divider></p-divider>
+
+            <p-table [value]="users" responsiveLayout="stack" [breakpoint]="'960px'" [rows]="10"
+                [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true"
+                currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>UserName</th>
+                        <th>FullName</th>
+                        <th>EmailAddress</th>
+                        <th>IsActive</th>
+                        <th style="width: 310px;">Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-user>
+                    <tr>
+                        <td>{{ user.userName }}</td>
+                        <td>{{ user.fullName }}</td>
+                        <td>{{ user.emailAddress }}</td>
+                        <td>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" disabled
+                                    [checked]="user.isActive" />
+                                <label class="custom-control-label"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil" label="Edit"
+                                class="p-button-secondary tableInideBtnHeight" (click)="editDialoge(user.id)"></button>
+                            <button pButton pRipple icon="pi pi-trash" label="Delete"
+                                class="p-button-danger tableInideBtnHeight" (click)="delete(user)"></button>
+                            <button pButton pRipple icon="pi pi-lock" label="ResetPassword"
+                                class="p-button-secondary tableInideBtnHeight" (click)="resetPassword(user)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-card>
     </section>
+
+</div>
+<!-- [style]="{width: '40vw'}"  -->
+
+<div>
+    <p-confirmDialog header="Delete Confirmation" icon="pi pi-info-circle"></p-confirmDialog>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, OnDestroy } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { appModuleAnimation } from '@shared/animations/routerTransition';
@@ -14,6 +14,8 @@ import {
 import { CreateUserDialogComponent } from './create-user/create-user-dialog.component';
 import { EditUserDialogComponent } from './edit-user/edit-user-dialog.component';
 import { ResetPasswordDialogComponent } from './reset-password/reset-password.component';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ConfirmationService } from 'primeng/api';
 
 class PagedUsersRequestDto extends PagedRequestDto {
   keyword: string;
@@ -34,10 +36,15 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
   constructor(
     injector: Injector,
     private _userService: UserServiceProxy,
-    private _modalService: BsModalService
+    private _modalService: BsModalService,
+    public dialogService: DialogService,
+    private confirmationService: ConfirmationService,
+
   ) {
     super(injector);
   }
+
+  ref: DynamicDialogRef | undefined;
 
   createUser(): void {
     this.showCreateOrEditUserDialog();
@@ -84,26 +91,31 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
   }
 
   protected delete(user: UserDto): void {
-    abp.message.confirm(
-      this.l('UserDeleteWarningMessage', user.fullName),
-      undefined,
-      (result: boolean) => {
-        if (result) {
-          this._userService.delete(user.id).subscribe(() => {
-            abp.notify.success(this.l('SuccessfullyDeleted'));
-            this.refresh();
-          });
-        }
-      }
-    );
+    this.confirmationService.confirm({
+      message: 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this._userService.delete(user.id).subscribe(() => {
+          abp.notify.success(this.l('SuccessfullyDeleted'));
+          this.refresh();
+        });
+      },
+      reject: (type) => {
+      },
+    })
   }
 
   private showResetPasswordUserDialog(id?: number): void {
-    this._modalService.show(ResetPasswordDialogComponent, {
-      class: 'modal-lg',
-      initialState: {
-        id: id,
+    this.ref = this.dialogService.open(ResetPasswordDialogComponent, {
+      data: {
+        id: id
       },
+      header: 'Reset Password',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true
     });
   }
 
@@ -129,6 +141,36 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
     }
 
     createOrEditUserDialog.content.onSave.subscribe(() => {
+      this.refresh();
+    });
+  }
+
+  showCreateDialoge() {
+    this.ref = this.dialogService.open(CreateUserDialogComponent, {
+      header: 'Create new user',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true
+    });
+
+    this.ref.onClose.subscribe((x: any) => {
+      this.refresh();
+    });
+  }
+
+  editDialoge(id) {
+    this.ref = this.dialogService.open(EditUserDialogComponent, {
+      data: {
+        id: id
+      },
+      header: 'Edit user',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true
+    });
+    this.ref.onClose.subscribe((x: any) => {
       this.refresh();
     });
   }
